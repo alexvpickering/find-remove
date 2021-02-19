@@ -101,12 +101,12 @@ function doDeleteFile (currentFile, options = {}) {
   }
 
   if (!doDelete && extensions) {
-    const currentExt = path.extname(currentFile)
+    const hasExtension = (extension) => currentFile.endsWith(extension);
 
     if (Array.isArray(extensions)) {
-      doDelete = extensions.indexOf(currentExt) !== -1
+      doDelete = extensions.some(hasExtension);
     } else {
-      doDelete = (currentExt === extensions)
+      doDelete = hasExtension(extensions);
     }
   }
 
